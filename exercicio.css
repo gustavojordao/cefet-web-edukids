@@ -1,7 +1,10 @@
 /* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
  * botões play/stop (para que o elemento se revele lentamente)
  */
- #controles ul {}
+ #controles ul {
+   transition: 750ms linear;
+
+ }
 
 /*
  * Exercício 2: Você deve implementar uma metáfora visual para cada um dos 4
@@ -11,17 +14,49 @@
  *   - perturbado: animal fica pulsando
  *   - instinto-selvagem: animal dá um salto e cresce, com uma borda vermelha
  */
-.agitado {}
+@keyframes animation_agitado{
+  from { opacity: 1.0; }
+  to { opacity: 0.0; }
+}
+
+@keyframes animation_alimentado{
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animation_perturbado{
+  from { height: 275px; width: 275px; ; border-radius: 135px }
+  to { height: 175px; width: 175px; border-radius: 85px  }
+}
+
+@keyframes animation_instinto-selvagem{
+  /*from { height: 224px; width: 224px; }*/
+  to { height: 500px; width: 500px; border-radius: 250px }
+}
+
+.agitado { animation: animation_agitado 1s 0s infinite }
 .agitado img {}
 
-.alimentado {}
-.alimentado img {}
+.alimentado {
+  animation: .25s animation_alimentado infinite;
+ }
 
-.perturbado {}
-.perturbado img {}
+.alimentado img {
+  border-color: green;
+  border-width: thick;
+}
 
-.instinto-selvagem {}
-.instinto-selvagem img {}
+.perturbado { }
+.perturbado img { animation: animation_perturbado 3s 0s infinite }
+
+.instinto-selvagem {
+}
+.instinto-selvagem img {
+  animation: animation_instinto-selvagem 1s 0s infinite;
+  border-color: red;
+  border-width: thick;
+}
 
 /*
  * Exercício 3: Criar uma imagem sprite com as imagens dos botões de controle
@@ -31,9 +66,12 @@
  *
  */
 
-.comecar,
-.parar {}
+ .comecar {
+   background-image: url(imgs/sprites-icones.png);
+   background-position: 0px 0px;
+ }
 
-.comecar {}
-
-.parar {}
+ .parar {
+   background-image: url(imgs/sprites-icones.png);
+   background-position: 24px 0px;
+ }
